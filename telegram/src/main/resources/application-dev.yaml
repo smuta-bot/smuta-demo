@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: "my url"
+    username: "my username"
+    password: "my password"
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+bot:
+  username: "my username"
+  token: "my token"

@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: "my url"
+    username: "my username"
+    password: "my password"
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8000
+bot:
+  confirmation_code: "my confirmation code"
+  access_key: "my access key"

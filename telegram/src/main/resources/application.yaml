@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: ${POSTGRES_ADDRESS}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+bot:
+  username: ${BOT_USERNAME}
+  token: ${BOT_TOKEN}

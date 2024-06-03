@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${POSTGRES_ADDRESS}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8000
+bot:
+  confirmation_code: ${CONFIRMATION_CODE}
+  access_key: ${ACCESS_CODE}

@@ -1,0 +1,46 @@
+services:
+  postgres_smuta:
+    image: postgres:16.3-alpine
+    container_name: postgres_smuta
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5436:5432"
+  liquibase_smuta:
+    image: liquibase_smuta
+    depends_on: [postgres_smuta]
+    build:
+      context: database
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ADDRESS: ${POSTGRES_ADDRESS}
+  telegram_smuta:
+    image: telegram_smuta
+    depends_on: [liquibase_smuta]
+    build:
+        context: telegram
+        dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ADDRESS: ${POSTGRES_ADDRESS}
+      BOT_USERNAME: USERNAME
+      BOT_TOKEN: TOKEN
+      SPRING_PROFILES_ACTIVE: prod
+  vk_smuta:
+    image: vk_smuta
+    depends_on: [liquibase_smuta]
+    build:
+        context: vk
+        dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ADDRESS: ${POSTGRES_ADDRESS}
+      CONFIRMATION_CODE: CODE
+      ACCESS_CODE: CODE
+      SPRING_PROFILES_ACTIVE: prod
